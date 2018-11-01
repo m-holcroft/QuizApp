@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:QuizApp"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             x:Class="QuizApp.MainPage"
+             Title="QuizApp Main Menu">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="Settings" Priority="0" Command="{Binding NavigateCommandAsync}" CommandParameter="Settings" Icon="settings.png"/>
+    </ContentPage.ToolbarItems>
+   
+    
+
+    <Grid RowSpacing="0" ColumnSpacing="0">
+        <!-- Place new controls here -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+
+        <Button x:Name="StartButton" Command="{Binding NavigateCommandAsync}" CommandParameter="Setup"
+                Text="{Binding StartText}"
+                Grid.Row="3"/>
+
+        <Button x:Name="ScoresButton" Command="{Binding NavigateCommandAsync}" CommandParameter="Score"     
+                Text="{Binding ScoreText}"
+                Grid.Row="4"/>
+
+        <Button x:Name="CustomButton" Command="{Binding NavigateCommandAsync}" CommandParameter="Custom"
+                Text="{Binding CustomText}"
+                Grid.Row="5"/>
+        
+        
+    </Grid>
+
+</ContentPage>

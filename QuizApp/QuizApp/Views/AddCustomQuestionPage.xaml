@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="QuizApp.Views.AddCustomQuestionPage"
+             Title="Custom Questions">
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0" Text="Enter your question and the 4 possible answers below"/>
+                <Entry Grid.Row="1" x:Name="QEntry" Placeholder="Question Text"/>
+                <Entry Grid.Row="2" x:Name="QAns1" Placeholder="Answer A"/>
+                <Entry Grid.Row="3" x:Name="QAns2" Placeholder="Answer B"/>
+                <Entry Grid.Row="4" x:Name="QAns3" Placeholder="Answer C"/>
+                <Entry Grid.Row="5" x:Name="QAns4" Placeholder="Answer D"/>
+                <Button Grid.Row="6" ClassId="SaveBtn" Text="Save"/>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

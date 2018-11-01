@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:behaviors="clr-namespace:QuizApp.Common.Behaviours"
+             x:Class="QuizApp.Views.QuizSetupPage"
+             Title="Setup Page">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="Fill" HorizontalOptions="Fill">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.10*"/>
+                    <RowDefinition Height="0.20*"/>
+                    <RowDefinition Height="0.15*"/>
+                    <RowDefinition Height="0.40*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Label Style="LargeRegularLabel" Text="Enter Your Display Name:" 
+                       Grid.Row="1" VerticalOptions="End" HorizontalOptions="Start"/>
+                <Entry x:Name="DisplayNameEntry" Grid.Row ="2" 
+                       Placeholder="Enter Name Here" 
+                       Text="{Binding DisplayName, Mode=TwoWay}" />
+                <Button x:Name="BeginButton" Text="Begin Quiz" 
+                        Grid.Row="4" 
+                        HorizontalOptions="Center" VerticalOptions="Center" 
+                        Command="{StaticResource BeginQuizButtonCommand}" CommandParameter="{Binding Source={x:Reference DisplayNameEntry}, Path=Text}"
+                        IsEnabled="{Binding Source={x:Reference DisplayNameEntry}, Path=Text.Length, Converter={StaticResource IntToBoolConverter}}"
+                        />
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

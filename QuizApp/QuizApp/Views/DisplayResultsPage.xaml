@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="QuizApp.Views.DisplayResultsPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label  Text="{Binding User, StringFormat='Hello {0}'}"
+                    VerticalOptions="CenterAndExpand" 
+                    HorizontalOptions="CenterAndExpand" />
+            <Label  Text="{Binding FinalScore, StringFormat='You scored {0}!'}"
+                    VerticalOptions="CenterAndExpand" 
+                    HorizontalOptions="CenterAndExpand" />
+
+            <Button x:Name="SaveButton" ClassId ="SaveButton" Text="Save Score" Command="{StaticResource SaveScoreButtonCommand}"
+                />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

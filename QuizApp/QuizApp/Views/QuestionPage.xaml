@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="QuizApp.Views.QuestionPage"
+             Title="Quiz">
+
+    <ContentPage.Content>
+        <StackLayout Padding="4">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Grid.Row="0" Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <ScrollView Grid.Row="2">
+                    <Label x:Name="QLabel" Text="{Binding Q}"
+                       Style="LargeRegularLabel"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"/>
+                </ScrollView>
+
+                
+                <!--Need to +1 to this value, question 0 makes no sense. Apparently converters is the way forward here-->
+                <Label Grid.Row="0" x:Name="QNumLabel" Text="{Binding QuestionNumber, StringFormat='Question No. {0}'}"
+                       HorizontalOptions="Start"
+                       VerticalOptions="End"
+                       />
+
+                <Label Grid.Row="0" x:Name="QPointsLabel" Text="{Binding Score, StringFormat='Points: {0}'}"
+                       HorizontalOptions="End"
+                       VerticalOptions="End"
+                       />
+            </Grid>
+            <ScrollView>
+                <StackLayout>
+                    <Button x:Name="ButtonA" ClassId="A" Text="{Binding A, Mode=OneWay}"
+                            VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" 
+                            Command="{StaticResource AnswerButtonCommand}" CommandParameter="{Binding A, Mode=OneWay}"
+                            IsEnabled="{Binding AEnabled}"/>
+                    <Button x:Name="ButtonB" ClassId="B" Text="{Binding B, Mode=OneWay}"
+                            VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" 
+                            Command="{StaticResource AnswerButtonCommand}" CommandParameter="{Binding B, Mode=OneWay}"
+                            IsEnabled="{Binding BEnabled}"/>
+                    <Button x:Name="ButtonC" ClassId="C" Text="{Binding C, Mode=OneWay}"
+                            VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" 
+                            Command="{StaticResource AnswerButtonCommand}" CommandParameter="{Binding C, Mode=OneWay}"
+                            IsEnabled="{Binding CEnabled}"/>
+                    <Button x:Name="ButtonD" ClassId="D" Text="{Binding D, Mode=OneWay}"
+                            VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" 
+                            Command="{StaticResource AnswerButtonCommand}" CommandParameter="{Binding D, Mode=OneWay}"
+                            IsEnabled="{Binding DEnabled}"/>
+                    <Button x:Name="ReadQuestionButton" ClassId="Read" Text="Read Question" 
+                            VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" 
+                            Command="{StaticResource SpeakCommand}" CommandParameter="{Binding Q}"/>
+                    <Button x:Name="QuitButton" ClassId="QuitButton" Text="Quit" 
+                            VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" 
+                            Command="{StaticResource QuitCommandAsync}"/>
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+        
+
+    </ContentPage.Content>
+</ContentPage>
