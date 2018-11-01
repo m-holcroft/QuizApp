@@ -49,7 +49,6 @@ namespace QuizApp.ViewModels
             App.QuestionViewModel.QuestionNumber = 0;
             await App.MainNavigation.PushModalAsync(new Views.QuestionPage());
         }
-
         #endregion
     }
 }
