@@ -14,18 +14,18 @@ namespace QuizApp.Data
         public DateTime AchievedOn { get; set; }
     }
 
-
-    /*NOT CONVERTED TO EASYTABLE YET*/
     public class QuestionsTable
     {
-        [PrimaryKey, AutoIncrement]
-        public int ID { get; set; }
+        [JsonProperty("Id")]   
+        public int Id { get; set; }
         public string QuestionText { get; set; }
         public string Ans1 { get; set; }
         public string Ans2 { get; set; }
         public string Ans3 { get; set; }
         public string Ans4 { get; set; }
         public int CorAns { get; set; }
+        public int QuestionNumber { get; set; }
+        public int QuestionGroup { get; set; }
     }
 
     //public class User

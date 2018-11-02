@@ -15,7 +15,7 @@
             <!-- commands -->            
             <command:AnswerButtonCommand x:Key="AnswerButtonCommand"/>
             <command:QuitCommandAsync x:Key="QuitCommandAsync"/>
-            <command:BeginQuizButtonCommand x:Key="BeginQuizButtonCommand"/>
+            <!--<command:BeginQuizButtonCommand x:Key="BeginQuizButtonCommand"/>-->
             <command:SaveScoreButtonCommand x:Key="SaveScoreButtonCommand"/>
             <command:SpeakCommand x:Key="SpeakCommand"/>
             
