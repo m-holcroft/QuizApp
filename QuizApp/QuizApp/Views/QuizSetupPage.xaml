@@ -22,9 +22,8 @@
                 <Button x:Name="BeginButton" Text="Begin Quiz" 
                         Grid.Row="4" 
                         HorizontalOptions="Center" VerticalOptions="Center" 
-                        Command="{StaticResource BeginQuizButtonCommand}" CommandParameter="{Binding Source={x:Reference DisplayNameEntry}, Path=Text}"
-                        IsEnabled="{Binding Source={x:Reference DisplayNameEntry}, Path=Text.Length, Converter={StaticResource IntToBoolConverter}}"
-                        />
+                        Command="{Binding BeginQuizAsyncCommand}" CommandParameter="{Binding Source={x:Reference DisplayNameEntry}, Path=Text}"
+                        IsEnabled="{Binding Source={x:Reference DisplayNameEntry}, Path=Text.Length, Converter={StaticResource IntToBoolConverter}}"/>
             </Grid>
         </StackLayout>
     </ContentPage.Content>

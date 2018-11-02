@@ -11,7 +11,7 @@ namespace QuizApp.Common.Commands
     /// <see cref="OnCanExecuteChanged"/> needs to be called whenever
     /// <see cref="CanExecute"/> is expected to return a different value.
     /// </summary>
-    public class RelayCommand : ICommand
+    public class RelayCommand<T> : ICommand
     {
         private readonly Action execute;
 

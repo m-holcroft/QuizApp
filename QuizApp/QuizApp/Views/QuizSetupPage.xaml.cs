@@ -15,7 +15,7 @@ namespace QuizApp.Views
         protected override void OnAppearing()
         {
             App.StartSetupViewModel = new ViewModels.QuizSetupViewModel();
-            this.BindingContext = App.StartSetupViewModel;
+            BindingContext = App.StartSetupViewModel;
             base.OnAppearing();
         }
     }
