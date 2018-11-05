@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Threading.Tasks;
 using QuizApp.Models;
 
@@ -47,7 +48,8 @@ namespace QuizApp.ViewModels
             Data.ScoresTable score = new Data.ScoresTable();
             score.DisplayName = _quizInstance.User;
             score.Points = _quizInstance.Score;
-            //TODO: Save score to Azure
+            score.AchievedOn = DateTime.UtcNow;
+            await App.AzureService.AddScore(score);
             await App.MainNavigation.PopAsync();
             await App.MainNavigation.PopAsync();
         }

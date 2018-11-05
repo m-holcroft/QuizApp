@@ -19,6 +19,10 @@
                 <Entry x:Name="DisplayNameEntry" Grid.Row ="2" 
                        Placeholder="Enter Name Here" 
                        Text="{Binding DisplayName, Mode=TwoWay}" />
+
+                <Picker x:Name="QuestionGroupPicker" Grid.Row="3"
+                        ItemsSource="{Binding QuestionGroupList}"/>
+
                 <Button x:Name="BeginButton" Text="Begin Quiz" 
                         Grid.Row="4" 
                         HorizontalOptions="Center" VerticalOptions="Center" 
