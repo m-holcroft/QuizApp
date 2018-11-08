@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Threading.Tasks;
 using QuizApp.Models;
+using QuizApp.Views;
 
 namespace QuizApp.ViewModels
 {
@@ -49,9 +50,12 @@ namespace QuizApp.ViewModels
             score.DisplayName = _quizInstance.User;
             score.Points = _quizInstance.Score;
             score.AchievedOn = DateTime.UtcNow;
+            await App.MainNavigation.PushModalAsync(new LoadingPage());
             await App.AzureService.AddScore(score);
-            await App.MainNavigation.PopAsync();
-            await App.MainNavigation.PopAsync();
+            await App.AzureService.SyncScores();
+            await App.MainNavigation.PopToRootAsync(false);
+            await App.MainNavigation.PushAsync(new DisplayScoresPage());
+            await App.MainNavigation.PopModalAsync();
         }
 
 

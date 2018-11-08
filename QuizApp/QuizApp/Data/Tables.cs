@@ -17,7 +17,7 @@ namespace QuizApp.Data
     public class QuestionsTable
     {
         [JsonProperty("Id")]   
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string QuestionText { get; set; }
         public string Ans1 { get; set; }
         public string Ans2 { get; set; }

@@ -42,16 +42,6 @@ namespace QuizApp.ViewModels
             set { SetProperty(ref _isBusy, value); }
         }
         /// <summary>
-        /// Probably not needed
-        /// </summary>
-        //private ObservableCollection<QuizInformation> _scores = new ObservableCollection<QuizInformation>();
-        //public ObservableCollection<QuizInformation> Scores
-        //{
-        //    get { return _scores; }
-        //    set { SetProperty(ref _scores, value); }
-        //}
-
-        /// <summary>
         /// An ObservableCollection of <see cref="ScoresTable"/> objects. These objects contain the raw data of the scores obtained from the Azure Server.
         /// </summary>
         private ObservableCollection<ScoresTable> _dbScores = new ObservableCollection<ScoresTable>();
@@ -108,6 +98,7 @@ namespace QuizApp.ViewModels
             }
             catch(Exception e)
             {
+
             }
 
             finally

@@ -46,6 +46,12 @@ namespace QuizApp
         /// <summary>
         /// A <see cref="MobileServiceClient"/> that is used in setting up the <see cref="AzureDataService"/>.
         /// </summary>
+
+        /// <summary>
+        /// A helper used to reduce boilerplate navigation code.
+        /// </summary>
+        public static NavigationHelper NavHelper { get; set; }    
+
         public static MobileServiceClient MobileService = new MobileServiceClient(Common.Constants.ApplicationURL);
         /// <summary>
         /// A more specific implementation of the <see cref="MobileServiceClient"/>.
@@ -58,6 +64,7 @@ namespace QuizApp
         {
             InitializeComponent();                              //Still no idea what this does.
             PopUpHelper = new PopUpHelper();                    //Initialise the popup helper.
+            NavHelper = new NavigationHelper();
             MainPage = new NavigationPage(new MainPage());      //Initialise the main page as a Navigation Page to be the base of the Navigation Stack.
         }
 

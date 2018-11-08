@@ -20,8 +20,8 @@
                        Placeholder="Enter Name Here" 
                        Text="{Binding DisplayName, Mode=TwoWay}" />
 
-                <Picker x:Name="QuestionGroupPicker" Grid.Row="3"
-                        ItemsSource="{Binding QuestionGroupList}"/>
+                <!--<Picker x:Name="QuestionGroupPicker" Grid.Row="3"
+                        ItemsSource="{Binding QuestionGroupList}"/>-->
 
                 <Button x:Name="BeginButton" Text="Begin Quiz" 
                         Grid.Row="4" 
@@ -29,6 +29,11 @@
                         Command="{Binding BeginQuizAsyncCommand}" CommandParameter="{Binding Source={x:Reference DisplayNameEntry}, Path=Text}"
                         IsEnabled="{Binding Source={x:Reference DisplayNameEntry}, Path=Text.Length, Converter={StaticResource IntToBoolConverter}}"/>
             </Grid>
+
+            <ActivityIndicator x:Name="actInd"
+                               IsRunning="{Binding IsBusy}"
+                               IsVisible="{Binding IsBusy}" />
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -107,39 +107,33 @@ namespace QuizApp.ViewModels
             switch (page)
             {
                 case "Custom":
-                    await App.MainNavigation.PushAsync(new Views.AddCustomQuestionPage(), true);
+                    await App.NavHelper.Navigate(new Views.AddCustomQuestionPage(), false);
                     IsBusy = false;
-                    NavigateCommandAsync.OnCanExecuteChanged();
                     return;
 
                 case "Question":
-                    await App.MainNavigation.PushAsync(new Views.QuestionPage(), true);
+                    await App.NavHelper.Navigate(new Views.QuestionPage(), false);
                     IsBusy = false;
-                    NavigateCommandAsync.OnCanExecuteChanged();
                     return;
 
                 case "Result":
-                    await App.MainNavigation.PushAsync(new Views.DisplayResultsPage(), true);
+                    await App.NavHelper.Navigate(new Views.DisplayResultsPage(), false);
                     IsBusy = false;
-                    NavigateCommandAsync.OnCanExecuteChanged();
                     return;
 
                 case "Score":
                     await App.MainNavigation.PushAsync(new Views.DisplayScoresPage(), true);
                     IsBusy = false;
-                    NavigateCommandAsync.OnCanExecuteChanged();
                     return;
 
                 case "Settings":
-                    await App.MainNavigation.PushAsync(new Views.SettingsPage(), true);
+                    await App.NavHelper.Navigate(new Views.SettingsPage(), false);
                     IsBusy = false;
-                    NavigateCommandAsync.OnCanExecuteChanged();
                     return;
 
                 case "Setup":
-                    await App.MainNavigation.PushAsync(new Views.QuizSetupPage(), true);
+                    await App.NavHelper.Navigate(new Views.QuizSetupPage(), false);
                     IsBusy = false;
-                    NavigateCommandAsync.OnCanExecuteChanged();
                     return;
                 default:
                     return;

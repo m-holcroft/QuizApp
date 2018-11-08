@@ -7,6 +7,8 @@ using QuizApp.Common.Commands;
 using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
+using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace QuizApp.ViewModels
 {
@@ -32,6 +34,7 @@ namespace QuizApp.ViewModels
         /// <summary>
         /// Indicates whether this ViewModel is performing a task.
         /// </summary>
+        /// 
         private bool _isBusy;
         /// <summary>
         /// Indicates whether this ViewModel is performing a task.
@@ -77,6 +80,21 @@ namespace QuizApp.ViewModels
             set { SetProperty<ObservableCollection<QuestionGroup>>(ref _questionGroupList, value, "QuestionGroupList"); }
             get { return _questionGroupList; }
         }
+
+        /// <summary>
+        /// The collection of questions to be passed to the quiz instance
+        /// </summary>
+        private ObservableCollection<Question> _questionCollection;
+        /// <summary>
+        /// The collection of questions to be passed to the quiz instance
+        /// </summary>
+        public ObservableCollection<Question> QuestionCollection
+        {
+            set { SetProperty<ObservableCollection<Question>>(ref _questionCollection, value, "QuestionCollection"); }
+            get { return _questionCollection; }
+        }
+
+
         #endregion
 
         #region Commands
@@ -97,15 +115,44 @@ namespace QuizApp.ViewModels
         {
             if (!IsBusy)
             {
-                IsBusy = true;                                                              //We're doing something, set IsBusy to true.
-                string name = parameter as string;                                          //Cast the parameter to a string using the 'as' operator.           
+                IsBusy = true;                                                              //We're doing something, set IsBusy to true.       
+                string name = parameter as string;                                          //Get the text.
+                await App.MainNavigation.PushModalAsync(new Views.LoadingPage(), false);
+
                 App.QuestionViewModel = new QuestionViewModel();                            //Create the next ViewModel.
                 App.QuestionViewModel.QuizInstance = QuizInstance;                          //Set the new VM's quiz instance to the one initalised previously.
                 App.QuestionViewModel.QuizInstance.User = name;                             //Pass the quiz instance the name entered in the Entry box, obtained from the CommandParameter in XAML.
                 App.QuestionViewModel.QuestionNumber = 0;                                   //Initalise the question number to 0 to avoid a nullpointer when trying to populate the button and label texts.
-                await App.MainNavigation.PushModalAsync(new Views.QuestionPage());          //Create the new page as a modal page, a page that cannot be navigated away from unless explicitly cancelled. It exists on a separate navigation stack.
+
+                try
+                {
+                    List<Data.QuestionsTable> downloadedList = await App.AzureService.GetQuestions(0);
+                    foreach (Data.QuestionsTable element in downloadedList)
+                    {
+                        Question q = new Question();
+                        q.QuestionText = element.QuestionText;
+                        q.Answers[0] = element.Ans1;
+                        q.Answers[1] = element.Ans2;
+                        q.Answers[2] = element.Ans3;
+                        q.Answers[3] = element.Ans4;
+                        q.CorrectAnswer = element.CorAns;
+                        App.QuestionViewModel.QuizInstance.QuestionList.Add(q);
+                    }
+                }
+
+                catch (Exception e)
+                {
+                    Debug.WriteLine(e.Message);
+                }
+
+                finally
+                {
+                    IsBusy = false;
+                    await App.MainNavigation.PopModalAsync(false);
+                    await App.MainNavigation.PushModalAsync(new Views.QuestionPage(),false);          //Create the new page as a modal page, a page that cannot be navigated away from unless explicitly cancelled. It exists on a separate navigation stack.
+                }                
             }
-            IsBusy = false;
+
         }
 
         /// <summary>

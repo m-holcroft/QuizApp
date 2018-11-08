@@ -90,7 +90,8 @@ namespace QuizApp.Data
         public async Task<List<QuestionsTable>> GetQuestions(int questionGroup)
         {
             await SyncQuestions();
-            return await _questionsTable.Where(x => x.QuestionGroup == questionGroup).OrderBy(x => x.QuestionNumber).ToListAsync();
+            //return await _questionsTable.Where(x => x.QuestionGroup == questionGroup).OrderBy(x => x.QuestionNumber).ToListAsync();
+            return await _questionsTable.OrderBy(x => x.QuestionNumber).ToListAsync();
         }
 
         public async Task AddQuestion(QuestionsTable newQuestion)
@@ -100,14 +101,34 @@ namespace QuizApp.Data
 
         public async Task SyncQuestions()
         {
+            ReadOnlyCollection<MobileServiceTableOperationError> syncErrors = null;
             try
             {
                 await _questionsTable.PullAsync("allQuestionsInGroup", _questionsTable.CreateQuery());
                 await MobileService.SyncContext.PushAsync();
             }
-            catch (Exception e)
+            catch (MobileServicePushFailedException mspfe)
             {
+                if (mspfe.PushResult != null)
+                {
+                    syncErrors = mspfe.PushResult.Errors;
+                }
+            }
 
+            if (syncErrors != null)
+            {
+                foreach (MobileServiceTableOperationError error in syncErrors)
+                {
+                    if (error.OperationKind == MobileServiceTableOperationKind.Update && error.Result != null)
+                    {
+                        await error.CancelAndUpdateItemAsync(error.Result);
+                    }
+                    else
+                    {
+                        await error.CancelAndDiscardItemAsync();
+                    }
+                    Debug.WriteLine(@"Error executing sync operation. Item: {0} ({1}). Operation discarded.", error.TableName, error.Item["id"]);
+                }
             }
         }
         #endregion

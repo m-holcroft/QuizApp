@@ -9,7 +9,7 @@ namespace QuizApp.ViewModels
 {
     public class QuestionViewModel : ObservableBase
     {
-        /* Constructors */
+        #region Constructors
         public QuestionViewModel()
         {
             QuizInformation QuizInstance = new QuizInformation();
@@ -20,8 +20,9 @@ namespace QuizApp.ViewModels
             CEnabled = true;
             DEnabled = true;
         }
+        #endregion
 
-        /* Private Members */
+        #region Members
         private QuizInformation _quizInstance;
         private int _questionNumber; //Should not be tracked in here, should be tracked in QuizInformation
         private int _score; //Should not be tracked in here, should be tracked in QuizInformation
@@ -35,11 +36,6 @@ namespace QuizApp.ViewModels
         private bool _cEnabled;
         private bool _dEnabled;
 
-
-
-
-        /* Generic Getters / Setters */
-        //Data binding is enabled for these items, PropertyChanged is tracked
         public int QuestionNumber
         {
             set
@@ -142,11 +138,12 @@ namespace QuizApp.ViewModels
             set { SetProperty<QuizInformation>(ref _quizInstance, value, "QuizInstance"); }
             get { return _quizInstance; }
         }
+        #endregion
 
-        /*Methods*/
+        #region Functions
         public async Task RetrieveQuestions()
         {
-            string s = "dummy";
+            string s = "";
             if (s == "dummy")
             {
                 QuizInstance.QuestionList.Add(new Question("What is the capital of the UK?", "A: London", "B: Birmingham", "C: Edinburgh", "D: Cardiff", 1)); //A
@@ -156,16 +153,7 @@ namespace QuizApp.ViewModels
             }
             else
             {
-                List<Data.QuestionsTable> tempQuestionList = new List<Data.QuestionsTable>();
-                //TODO: Add retrieval from Azure Table instead of locals
 
-                if(QuizInstance.QuestionList.Count == 0)
-                {
-                    foreach (Data.QuestionsTable element in tempQuestionList)
-                    {
-                        QuizInstance.QuestionList.Add(new Question(element.QuestionText, element.Ans1, element.Ans2, element.Ans3, element.Ans4, element.CorAns));
-                    }
-                }
             }
             Q = QuizInstance.QuestionList[0].QuestionText;
             A = QuizInstance.QuestionList[0].Answers[0];
@@ -208,9 +196,9 @@ namespace QuizApp.ViewModels
         public void ResolveAnswerButton(object obj)
         {
             string bText = (string)obj;
-            int numOfQuestions = QuizInstance.QuestionList.Count - 1;
-            string corrAnsText = QuizInstance.QuestionList[QuestionNumber].Answers[QuizInstance.QuestionList[QuestionNumber].CorrectAnswer - 1];
-
+            int numOfQuestions = QuizInstance.QuestionList.Count - 1; ;
+            string corrAnsText = QuizInstance.QuestionList[QuestionNumber].Answers[QuizInstance.QuestionList[QuestionNumber].CorrectAnswer]; ;
+               
             if(bText == corrAnsText)
             {
                 QuizInstance.Score += 2;
@@ -255,9 +243,10 @@ namespace QuizApp.ViewModels
         }
         public async void ShowResults(QuizInformation q)
         {
-            App.ResultsViewModel = new ViewModels.DisplayResultsViewModel(QuizInstance);
-            await App.MainNavigation.PopModalAsync();
-            await App.MainNavigation.PushAsync(new Views.DisplayResultsPage());
+            App.ResultsViewModel = new DisplayResultsViewModel(QuizInstance);
+            await App.MainNavigation.PushAsync(new Views.DisplayResultsPage(), false);
+            await App.MainNavigation.PopModalAsync(false);
         }
+        #endregion
     }
 }
