@@ -1,30 +1,38 @@
 ﻿using Microsoft.WindowsAzure.MobileServices;
 using Microsoft.WindowsAzure.MobileServices.SQLiteStore;
 using Microsoft.WindowsAzure.MobileServices.Sync;
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace QuizApp.Data
 {
     public class AzureDataService
     {
+        /// <summary>
+        /// The object that will handle the vast majority of the interactions with the database.
+        /// </summary>
         public MobileServiceClient MobileService { get; set; }
+        /// <summary>
+        /// The object that will contain the table of <see cref="ScoresTable"/> objects.
+        /// </summary>
         IMobileServiceSyncTable<ScoresTable> _scoresTable;
+        /// <summary>
+        /// The object that will contain the table of <see cref="QuestionsTable"/> objects.
+        /// </summary>
         IMobileServiceSyncTable<QuestionsTable> _questionsTable;
 
+        /// <summary>
+        /// Initialise the mobile service and the local database.
+        /// </summary>
+        /// <returns></returns>
         public async Task Initialise()
         {
-            //Create our client
             MobileService = new MobileServiceClient(Common.Constants.ApplicationURL);
 
             const string path = "localstore.db";
             MobileServiceSQLiteStore store = new MobileServiceSQLiteStore(path);
-
 
             store.DefineTable<ScoresTable>();
             store.DefineTable<QuestionsTable>();
@@ -83,6 +91,11 @@ namespace QuizApp.Data
                     Debug.WriteLine(@"Error executing sync operation. Item: {0} ({1}). Operation discarded.", error.TableName, error.Item["id"]);
                 }
             }
+        }
+
+        public async Task DeleteScore(ScoresTable table)
+        {
+            await _scoresTable.DeleteAsync(table);
         }
         #endregion
 

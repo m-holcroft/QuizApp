@@ -40,6 +40,10 @@ namespace QuizApp
         /// </summary>
         public static DisplayResultsViewModel ResultsViewModel { get; set; }
         /// <summary>
+        /// A ViewModel for the settings page
+        /// </summary>
+        public static SettingsViewModel SettingsViewModel { get; set; }
+        /// <summary>
         /// A helper class to simplify the calling of <see cref="DependencyService.Get{T}(DependencyFetchTarget)"/>
         /// </summary>
         public static PopUpHelper PopUpHelper { get; set; }

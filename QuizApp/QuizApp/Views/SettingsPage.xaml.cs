@@ -19,6 +19,8 @@ namespace QuizApp.Views
 
         protected override void OnAppearing()
         {
+            App.SettingsViewModel = new ViewModels.SettingsViewModel();
+            BindingContext = App.SettingsViewModel;
             base.OnAppearing();
         }
     }

@@ -18,5 +18,7 @@ namespace QuizApp.Helpers
 
             return orientation;
         }
+
+
     }
 }

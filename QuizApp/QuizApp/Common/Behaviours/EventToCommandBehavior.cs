@@ -5,50 +5,86 @@ using Xamarin.Forms;
 
 namespace QuizApp.Common.Behaviours
 {
+    /// <summary>
+    /// A behaviour implementation that takes an event handler and causes it to execute a given command.
+    /// </summary>
     public class EventToCommandBehavior : BehaviorBase<View>
     {
-        Delegate eventHandler;
+        /// <summary>
+        /// No idea
+        /// </summary>
+        Delegate eventHandler; //TODO: Research delegates properly
 
+        /// <summary>
+        /// The name of the event.
+        /// </summary>
         public static readonly BindableProperty EventNameProperty = BindableProperty.Create("EventName", typeof(string), typeof(EventToCommandBehavior), null, propertyChanged: OnEventNameChanged);
+        /// <summary>
+        /// The name of the command.
+        /// </summary>
         public static readonly BindableProperty CommandProperty = BindableProperty.Create("Command", typeof(ICommand), typeof(EventToCommandBehavior), null);
+        /// <summary>
+        /// The command parameter.
+        /// </summary>
         public static readonly BindableProperty CommandParameterProperty = BindableProperty.Create("CommandParameter", typeof(object), typeof(EventToCommandBehavior), null);
+        /// <summary>
+        /// The converter to be used.
+        /// </summary>
         public static readonly BindableProperty InputConverterProperty = BindableProperty.Create("Converter", typeof(IValueConverter), typeof(EventToCommandBehavior), null);
 
+        /// <summary>
+        /// The name of the event.
+        /// </summary>
         public string EventName
         {
             get { return (string)GetValue(EventNameProperty); }
             set { SetValue(EventNameProperty, value); }
         }
-
+        /// <summary>
+        /// The name of the command.
+        /// </summary>
         public ICommand Command
         {
             get { return (ICommand)GetValue(CommandProperty); }
             set { SetValue(CommandProperty, value); }
         }
-
+        /// <summary>
+        /// The command parameter.
+        /// </summary>
         public object CommandParameter
         {
             get { return GetValue(CommandParameterProperty); }
             set { SetValue(CommandParameterProperty, value); }
         }
-
+        /// <summary>
+        /// The converter to be used.
+        /// </summary>
         public IValueConverter Converter
         {
             get { return (IValueConverter)GetValue(InputConverterProperty); }
             set { SetValue(InputConverterProperty, value); }
         }
 
+        /// <summary>
+        /// A method that is fired when the behaviour is attached to a view.
+        /// </summary>
+        /// <param name="bindable">The bindable view to attach to.</param>
         protected override void OnAttachedTo(View bindable)
         {
             base.OnAttachedTo(bindable);
             RegisterEvent(EventName);
         }
 
+        /// <summary>
+        /// A method that is fired when the behaviour is detached from a view.
+        /// </summary>
+        /// <param name="bindable">The bindable view to detach to.</param>
         protected override void OnDetachingFrom(View bindable)
         {
             base.OnDetachingFrom(bindable);
             DeregisterEvent(EventName);
         }
+
 
         void RegisterEvent(string name)
         {

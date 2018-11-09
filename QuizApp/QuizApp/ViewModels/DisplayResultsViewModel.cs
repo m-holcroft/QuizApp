@@ -1,8 +1,10 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using QuizApp.Models;
 using QuizApp.Views;
+using Xamarin.Forms;
 
 namespace QuizApp.ViewModels
 {
@@ -11,11 +13,12 @@ namespace QuizApp.ViewModels
     /// </summary>
     public class DisplayResultsViewModel : Common.ObservableBase, INotifyPropertyChanged
     {
-        /*Constructors*/
+        #region Constructors
         public DisplayResultsViewModel()
         {
             _quizInstance = new QuizInformation();
             _finalScore = -1;
+            SaveScoreAsyncCommand = new Command(async () => await SaveScoreAsync());
         }
         public DisplayResultsViewModel(QuizInformation q)
         {
@@ -23,13 +26,13 @@ namespace QuizApp.ViewModels
             _finalScore = q.Score;
             _user = q.User;
         }
+        #endregion
 
-        /*Members*/
+        #region Members
         private QuizInformation _quizInstance;
         private int _finalScore;
         private string _user;
 
-        /*Getters / Setters with Data Binding*/
         public string User
         {
             set { SetProperty<string>(ref _user, value, "User"); }
@@ -45,9 +48,14 @@ namespace QuizApp.ViewModels
             set { SetProperty<QuizInformation>(ref _quizInstance, value, "QuizInstance"); }
             get { return _quizInstance; }
         }
+        #endregion
 
-        /*Methods*/
-        public async Task SaveScore()
+        #region Commands
+        public ICommand SaveScoreAsyncCommand { get; private set; }
+        #endregion
+
+        #region Functions
+        public async Task SaveScoreAsync()
         {
             Data.ScoresTable score = new Data.ScoresTable();
             score.DisplayName = _quizInstance.User;
@@ -67,7 +75,6 @@ namespace QuizApp.ViewModels
             await App.MainNavigation.PushAsync(new DisplayScoresPage());
             await App.MainNavigation.PopModalAsync();
         }
-
-
+        #endregion
     }
 }

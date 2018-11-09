@@ -20,7 +20,6 @@ namespace QuizApp.Views
         protected override void OnAppearing()
         {
             BindingContext = App.QuestionViewModel;
-            App.QuestionViewModel.UpdateQuestions();
             base.OnAppearing();
         }
     }

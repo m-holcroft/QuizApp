@@ -28,7 +28,7 @@
 
                 
                 <!--Need to +1 to this value, question 0 makes no sense. Apparently converters is the way forward here-->
-                <Label Grid.Row="0" x:Name="QNumLabel" Text="{Binding QuestionNumber, StringFormat='Question No. {0}'}"
+                <Label Grid.Row="0" x:Name="QNumLabel" Text="{Binding QuestionNumberDisplayed, StringFormat='Question No. {0}'}"
                        HorizontalOptions="Start"
                        VerticalOptions="End"
                        />
@@ -42,26 +42,27 @@
                 <StackLayout>
                     <Button x:Name="ButtonA" ClassId="A" Text="{Binding A, Mode=OneWay}"
                             VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" 
-                            Command="{StaticResource AnswerButtonCommand}" CommandParameter="{Binding A, Mode=OneWay}"
+                            Command="{Binding AnswerQuestionCommand}" CommandParameter="{Binding A, Mode=OneWay}"
                             IsEnabled="{Binding AEnabled}"/>
                     <Button x:Name="ButtonB" ClassId="B" Text="{Binding B, Mode=OneWay}"
                             VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" 
-                            Command="{StaticResource AnswerButtonCommand}" CommandParameter="{Binding B, Mode=OneWay}"
+                            Command="{Binding AnswerQuestionCommand}" CommandParameter="{Binding B, Mode=OneWay}"
                             IsEnabled="{Binding BEnabled}"/>
                     <Button x:Name="ButtonC" ClassId="C" Text="{Binding C, Mode=OneWay}"
                             VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" 
-                            Command="{StaticResource AnswerButtonCommand}" CommandParameter="{Binding C, Mode=OneWay}"
+                            Command="{Binding AnswerQuestionCommand}" CommandParameter="{Binding C, Mode=OneWay}"
                             IsEnabled="{Binding CEnabled}"/>
                     <Button x:Name="ButtonD" ClassId="D" Text="{Binding D, Mode=OneWay}"
                             VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" 
-                            Command="{StaticResource AnswerButtonCommand}" CommandParameter="{Binding D, Mode=OneWay}"
+                            Command="{Binding AnswerQuestionCommand}" CommandParameter="{Binding D, Mode=OneWay}"
                             IsEnabled="{Binding DEnabled}"/>
+                    <BoxView/>
                     <Button x:Name="ReadQuestionButton" ClassId="Read" Text="Read Question" 
                             VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" 
-                            Command="{StaticResource SpeakCommand}" CommandParameter="{Binding Q}"/>
+                            Command="{Binding SpeakCommand}" CommandParameter="{Binding Q}"/>
                     <Button x:Name="QuitButton" ClassId="QuitButton" Text="Quit" 
                             VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" 
-                            Command="{StaticResource QuitCommandAsync}"/>
+                            Command="{Binding QuitAsyncCommand}"/>
                 </StackLayout>
             </ScrollView>
         </StackLayout>

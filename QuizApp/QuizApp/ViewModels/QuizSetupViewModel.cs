@@ -138,6 +138,7 @@ namespace QuizApp.ViewModels
                         q.CorrectAnswer = element.CorAns;
                         App.QuestionViewModel.QuizInstance.QuestionList.Add(q);
                     }
+                    App.QuestionViewModel.UpdateLabels();
                 }
 
                 catch (Exception e)

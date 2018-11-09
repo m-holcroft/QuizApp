@@ -11,7 +11,7 @@
                     VerticalOptions="CenterAndExpand" 
                     HorizontalOptions="CenterAndExpand" />
 
-            <Button x:Name="SaveButton" ClassId ="SaveButton" Text="Save Score" Command="{StaticResource SaveScoreButtonCommand}"
+            <Button x:Name="SaveButton" Text="Save Score" Command="{Binding SaveScoreAsyncCommand}"
                 />
         </StackLayout>
     </ContentPage.Content>

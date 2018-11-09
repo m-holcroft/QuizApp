@@ -8,6 +8,11 @@
             <Label Text="SettingsPage"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
+
+            <Button x:Name="ResetDBButton"
+                    VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"
+                    Text="{Binding ResetButtonText}"
+                    Command="{Binding ResetButtonCommand}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
