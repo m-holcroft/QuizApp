@@ -107,17 +107,17 @@ namespace QuizApp.ViewModels
             switch (page)
             {
                 case "Custom":
-                    await App.NavHelper.Navigate(new Views.AddCustomQuestionPage(), false);
+                    await App.NavHelper.NavigateLoading(new Views.AddCustomQuestionPage(), false);
                     IsBusy = false;
                     return;
 
                 case "Question":
-                    await App.NavHelper.Navigate(new Views.QuestionPage(), false);
+                    await App.NavHelper.NavigateLoading(new Views.QuestionPage(), false);
                     IsBusy = false;
                     return;
 
                 case "Result":
-                    await App.NavHelper.Navigate(new Views.DisplayResultsPage(), false);
+                    await App.NavHelper.NavigateLoading(new Views.DisplayResultsPage(), false);
                     IsBusy = false;
                     return;
 
@@ -127,12 +127,12 @@ namespace QuizApp.ViewModels
                     return;
 
                 case "Settings":
-                    await App.NavHelper.Navigate(new Views.SettingsPage(), false);
+                    await App.NavHelper.NavigateLoading(new Views.SettingsPage(), false);
                     IsBusy = false;
                     return;
 
                 case "Setup":
-                    await App.NavHelper.Navigate(new Views.QuizSetupPage(), false);
+                    await App.NavHelper.NavigateLoading(new Views.QuizSetupPage(), false);
                     IsBusy = false;
                     return;
                 default:

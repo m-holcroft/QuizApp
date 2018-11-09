@@ -19,7 +19,7 @@ namespace QuizApp.Helpers
         /// <param name="page">The page type to be navigated to.</param>
         /// <param name="animation">Whether or not to perform an animation.</param>
         /// <returns></returns>
-        public async Task Navigate(Page page, bool animation)
+        public async Task NavigateLoading(Page page, bool animation)
         {
             await App.MainNavigation.PushModalAsync(new LoadingPage(), animation);
             await App.MainNavigation.PushAsync(page, animation);
@@ -34,7 +34,7 @@ namespace QuizApp.Helpers
         /// <param name="animation">Whether or not to perform an animation.</param>
         /// <param name="delay">Any delay to be perfomed in miliseconds, 1000 is a good number.</param>
         /// <returns></returns>
-        public async Task Navigate(Page page, bool animation, int delay)
+        public async Task NavigateLoadingDelayed(Page page, bool animation, int delay)
         {
             await App.MainNavigation.PushModalAsync(new LoadingPage(), animation);
             await App.MainNavigation.PushAsync(page, animation);

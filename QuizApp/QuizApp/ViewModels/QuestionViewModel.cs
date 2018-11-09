@@ -1,9 +1,7 @@
 ﻿using System;
 using QuizApp.Models;
 using QuizApp.Common;
-using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Collections.ObjectModel;
 
 namespace QuizApp.ViewModels
 {

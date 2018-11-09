@@ -6,6 +6,9 @@ using QuizApp.Views;
 
 namespace QuizApp.ViewModels
 {
+    /// <summary>
+    /// The view model for the disaplay results page.
+    /// </summary>
     public class DisplayResultsViewModel : Common.ObservableBase, INotifyPropertyChanged
     {
         /*Constructors*/
@@ -51,8 +54,15 @@ namespace QuizApp.ViewModels
             score.Points = _quizInstance.Score;
             score.AchievedOn = DateTime.UtcNow;
             await App.MainNavigation.PushModalAsync(new LoadingPage());
-            await App.AzureService.AddScore(score);
-            await App.AzureService.SyncScores();
+            try
+            {
+                await App.AzureService.AddScore(score);
+                await App.AzureService.SyncScores();
+            }
+            catch(Exception e)
+            {
+                App.PopUpHelper.ShortAlert(Common.Constants.ConnectionFailedMessage);
+            }
             await App.MainNavigation.PopToRootAsync(false);
             await App.MainNavigation.PushAsync(new DisplayScoresPage());
             await App.MainNavigation.PopModalAsync();
