@@ -19,16 +19,9 @@ namespace QuizApp.Views
 
         protected override void OnAppearing()
         {
-            LoadQuestions();
+            BindingContext = App.QuestionViewModel;
             App.QuestionViewModel.UpdateQuestions();
             base.OnAppearing();
-        }
-
-
-        private async void LoadQuestions()
-        {
-            this.BindingContext = App.QuestionViewModel;
-            await App.QuestionViewModel.RetrieveQuestions();
         }
     }
 }
