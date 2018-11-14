@@ -151,7 +151,6 @@ namespace QuizApp.ViewModels
                     await App.MainNavigation.PushModalAsync(new Views.QuestionPage(),false);          //Create the new page as a modal page, a page that cannot be navigated away from unless explicitly cancelled. It exists on a separate navigation stack.
                 }                
             }
-
         }
 
         /// <summary>

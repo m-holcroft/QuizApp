@@ -37,7 +37,7 @@ namespace QuizApp.Data
             store.DefineTable<ScoresTable>();
             store.DefineTable<QuestionsTable>();
 
-            await MobileService.SyncContext.InitializeAsync(store, new MobileServiceSyncHandler());
+            await MobileService.SyncContext.InitializeAsync(store);
 
             _scoresTable = MobileService.GetSyncTable<ScoresTable>();
             _questionsTable = MobileService.GetSyncTable<QuestionsTable>();
@@ -46,7 +46,6 @@ namespace QuizApp.Data
         #region ScoresFunctions
         public async Task<List<ScoresTable>> GetScores()
         {
-            await SyncScores();
             return await _scoresTable.OrderByDescending(x => x.Points).ToListAsync();
         }
 
@@ -106,8 +105,7 @@ namespace QuizApp.Data
         #region QuestionsFunctions
         public async Task<List<QuestionsTable>> GetQuestions(int questionGroup)
         {
-            await SyncQuestions();
-            return await _questionsTable.OrderBy(x => x.QuestionNumber).ToListAsync();
+            return await _questionsTable.OrderBy(x => x.QuestionNumber).ToListAsync(); 
         }
 
         public async Task AddQuestion(QuestionsTable newQuestion)
