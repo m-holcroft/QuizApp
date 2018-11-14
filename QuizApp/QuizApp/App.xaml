@@ -1,16 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:light="clr-namespace:Xamarin.Forms.Themes;assembly=Xamarin.Forms.Theme.Light"
-             xmlns:dark="clr-namespace:Xamarin.Forms.Themes;assembly=Xamarin.Forms.Theme.Dark"
-             xmlns:command="clr-namespace:QuizApp.Common.Commands"
              xmlns:convert="clr-namespace:QuizApp.Common.Converters"
              x:Class="QuizApp.App">
             
     
     <Application.Resources>
 
-        <ResourceDictionary MergedWith="dark:DarkThemeResources">
+        <ResourceDictionary>
                     
             
             <!-- converters -->
@@ -31,6 +28,7 @@
                 <Setter Property="HorizontalOptions" Value="Center"/>
                 <Setter Property="VerticalOptions" Value="Center"/>
             </Style>
+
         </ResourceDictionary>
       
     </Application.Resources>
