@@ -17,175 +17,19 @@
             <convert:QuestionNumberConverter x:Key="QuestionNumberConverter"/>
             <convert:IntToBoolConverter x:Key="IntToBoolConverter"/>
             <convert:SelectedItemConverter x:Key="SelectedItemConverter"/>
-
-            <!--  colors  -->
-            <Color x:Key="HeaderTextColor">#585858</Color>
-            <Color x:Key="BodyTextColor">#000000</Color>
-            <Color x:Key="ButtonBackgroundColor">#5992FF</Color>
+            
+            <!--colors-->
+            <!--buttons-->
             <Color x:Key="ButtonBorderColor">#e0e0e0</Color>
-            <Color x:Key="BackgroundColor">#</Color>
 
-
-            <!--  font families  -->
-            <OnPlatform x:Key="RegularFontFamily" x:TypeArguments="x:String">
-                <On Platform="iOS">HelveticaNeue</On>
-            </OnPlatform>
-
-            <OnPlatform x:Key="LightFontFamily" x:TypeArguments="x:String">
-                <On Platform="iOS">HelveticaNeue-Light</On>
-            </OnPlatform>
-
-            <OnPlatform x:Key="MediumFontFamily" x:TypeArguments="x:String">
-                <On Platform="iOS">HelveticaNeue-Medium</On>
-            </OnPlatform>
-
-            <!--  Fixed Font Sizes  -->
-            <x:Double x:Key="ExtraLargeFontSize">26</x:Double>
-            <x:Double x:Key="LargeFontSize">22</x:Double>
-            <x:Double x:Key="MediumFontSize">18</x:Double>
-            <x:Double x:Key="SmallFontSize">14</x:Double>
-            <x:Double x:Key="ExtraSmallFontSize">12</x:Double>
-
-
-            <!--  Implicit Styles  -->
-            <Style TargetType="RelativeLayout">
-                <Setter Property="BackgroundColor" Value="{StaticResource BackgroundColor}"/>
-            </Style>
-
-            <Style TargetType="Grid">
-                <Setter Property="ColumnSpacing" Value="3"/>
-                <Setter Property="RowSpacing" Value="4"/>
-                <!--<Setter Property="BackgroundColor" Value="{StaticResource BackgroundColor}"/>-->
-                <Setter Property="Padding" Value="1"/>
-            </Style>
-
-            <Style TargetType="Label">
-                <!--<Setter Property="TextColor" Value="{StaticResource BodyTextColor}" />-->
-                <Setter Property="FontFamily" Value="{StaticResource RegularFontFamily}" />
-                <Setter Property="FontSize" Value="Medium" />
-                <Setter Property="HorizontalTextAlignment" Value="Center" />
-            </Style>
-
+            <!--implicit styles-->
             <Style TargetType="Button">
-                <!--<Setter Property="BackgroundColor" Value="{StaticResource ButtonBackgroundColor}" /> -->
-                <Setter Property="TextColor" Value="White" />
-                <Setter Property="MinimumHeightRequest" Value="40" />
-                <Setter Property="BorderRadius" Value="15" />
-                <Setter Property="FontFamily" Value="{StaticResource MediumFontFamily}" />
-                <Setter Property="FontSize" Value="Medium" />
-                <!--<Setter Property="BorderColor" Value="{StaticResource ButtonBorderColor}"/>-->
-                <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
-                <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
-            </Style>
+                <Setter Property="BorderRadius" Value="8"/>
+                <Setter Property="BorderWidth" Value="2"/>
+                <Setter Property="BorderColor" Value="{StaticResource ButtonBorderColor}"/>
 
-
-            <!--Explicit Styles-->
-            <!--Regular Labels-->
-            <Style x:Key="ExtraLargeRegularLabel" TargetType="Label">
-                <Setter Property="TextColor" Value="{StaticResource HeaderTextColor}" />
-                <Setter Property="FontFamily" Value="{StaticResource RegularFontFamily}" />
-                <Setter Property="FontSize" Value="{StaticResource ExtraLargeFontSize}" />
-                <Setter Property="HorizontalTextAlignment" Value="Center" />
-            </Style>
-
-            <Style x:Key="LargeRegularLabel" TargetType="Label">
-                <Setter Property="TextColor" Value="{StaticResource HeaderTextColor}" />
-                <Setter Property="FontFamily" Value="{StaticResource RegularFontFamily}" />
-                <Setter Property="FontSize" Value="Large" />
-                <Setter Property="HorizontalTextAlignment" Value="Center" />
-            </Style>
-
-            <Style x:Key="MediumRegularLabel" TargetType="Label">
-                <Setter Property="TextColor" Value="{StaticResource BodyTextColor}" />
-                <Setter Property="FontFamily" Value="{StaticResource RegularFontFamily}" />
-                <Setter Property="FontSize" Value="Medium" />
-                <Setter Property="HorizontalTextAlignment" Value="Center" />
-            </Style>
-
-            <Style x:Key="SmallRegularLabel" TargetType="Label">
-                <Setter Property="TextColor" Value="{StaticResource BodyTextColor}" />
-                <Setter Property="HorizontalTextAlignment" Value="Center" />
-                <Setter Property="FontFamily" Value="{StaticResource RegularFontFamily}" />
-                <Setter Property="FontSize" Value="Small" />
-            </Style>
-
-            <Style x:Key="ExtraSmallRegularLabel" TargetType="Label">
-                <Setter Property="TextColor" Value="{StaticResource BodyTextColor}" />
-                <Setter Property="HorizontalTextAlignment" Value="Center" />
-                <Setter Property="FontFamily" Value="{StaticResource RegularFontFamily}" />
-                <Setter Property="FontSize" Value="Micro" />
-            </Style>
-
-            <!--Light Labels-->
-            <Style x:Key="ExtraLargeLightLabel" TargetType="Label">
-                <Setter Property="TextColor" Value="{StaticResource HeaderTextColor}" />
-                <Setter Property="FontFamily" Value="{StaticResource LightFontFamily}" />
-                <Setter Property="FontSize" Value="{StaticResource ExtraLargeFontSize}" />
-                <Setter Property="HorizontalTextAlignment" Value="Center" />
-            </Style>
-
-            <Style x:Key="LargeLightLabel" TargetType="Label">
-                <Setter Property="TextColor" Value="{StaticResource HeaderTextColor}" />
-                <Setter Property="FontFamily" Value="{StaticResource LightFontFamily}" />
-                <Setter Property="FontSize" Value="Large" />
-                <Setter Property="HorizontalTextAlignment" Value="Center" />
-            </Style>
-
-            <Style x:Key="MediumLightLabel" TargetType="Label">
-                <Setter Property="TextColor" Value="{StaticResource BodyTextColor}" />
-                <Setter Property="FontFamily" Value="{StaticResource LightFontFamily}" />
-                <Setter Property="FontSize" Value="Medium" />
-                <Setter Property="HorizontalTextAlignment" Value="Center" />
-            </Style>
-
-            <Style x:Key="SmallLightLabel" TargetType="Label">
-                <Setter Property="TextColor" Value="{StaticResource BodyTextColor}" />
-                <Setter Property="HorizontalTextAlignment" Value="Center" />
-                <Setter Property="FontFamily" Value="{StaticResource LightFontFamily}" />
-                <Setter Property="FontSize" Value="Small" />
-            </Style>
-
-            <Style x:Key="ExtraSmallLightLabel" TargetType="Label">
-                <Setter Property="TextColor" Value="{StaticResource BodyTextColor}" />
-                <Setter Property="HorizontalTextAlignment" Value="Center" />
-                <Setter Property="FontFamily" Value="{StaticResource LightFontFamily}" />
-                <Setter Property="FontSize" Value="Micro" />
-            </Style>
-
-            <!--Medium Labels-->
-            <Style x:Key="ExtraLargeMediumLabel" TargetType="Label">
-                <Setter Property="TextColor" Value="{StaticResource HeaderTextColor}" />
-                <Setter Property="FontFamily" Value="{StaticResource MediumFontFamily}" />
-                <Setter Property="FontSize" Value="{StaticResource ExtraLargeFontSize}" />
-                <Setter Property="HorizontalTextAlignment" Value="Center" />
-            </Style>
-
-            <Style x:Key="LargeMediumLabel" TargetType="Label">
-                <Setter Property="TextColor" Value="{StaticResource HeaderTextColor}" />
-                <Setter Property="FontFamily" Value="{StaticResource MediumFontFamily}" />
-                <Setter Property="FontSize" Value="Large" />
-                <Setter Property="HorizontalTextAlignment" Value="Center" />
-            </Style>
-
-            <Style x:Key="MediumMediumLabel" TargetType="Label">
-                <Setter Property="TextColor" Value="{StaticResource BodyTextColor}" />
-                <Setter Property="FontFamily" Value="{StaticResource MediumFontFamily}" />
-                <Setter Property="FontSize" Value="Medium" />
-                <Setter Property="HorizontalTextAlignment" Value="Center" />
-            </Style>
-
-            <Style x:Key="SmallMediumLabel" TargetType="Label">
-                <Setter Property="TextColor" Value="{StaticResource BodyTextColor}" />
-                <Setter Property="HorizontalTextAlignment" Value="Center" />
-                <Setter Property="FontFamily" Value="{StaticResource MediumFontFamily}" />
-                <Setter Property="FontSize" Value="Small" />
-            </Style>
-
-            <Style x:Key="ExtraSmallMediumLabel" TargetType="Label">
-                <Setter Property="TextColor" Value="{StaticResource BodyTextColor}" />
-                <Setter Property="HorizontalTextAlignment" Value="Center" />
-                <Setter Property="FontFamily" Value="{StaticResource MediumFontFamily}" />
-                <Setter Property="FontSize" Value="Micro" />
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
             </Style>
         </ResourceDictionary>
       

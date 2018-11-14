@@ -1,6 +1,7 @@
 ﻿using Microsoft.WindowsAzure.MobileServices;
 using Microsoft.WindowsAzure.MobileServices.SQLiteStore;
 using Microsoft.WindowsAzure.MobileServices.Sync;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -31,7 +32,7 @@ namespace QuizApp.Data
         {
             MobileService = new MobileServiceClient(Common.Constants.ApplicationURL);
 
-            const string path = "localstore.db";
+            const string path = "devicestore.db";
             MobileServiceSQLiteStore store = new MobileServiceSQLiteStore(path);
 
             store.DefineTable<ScoresTable>();
@@ -41,7 +42,19 @@ namespace QuizApp.Data
 
             _scoresTable = MobileService.GetSyncTable<ScoresTable>();
             _questionsTable = MobileService.GetSyncTable<QuestionsTable>();
+
+            try
+            {
+                await SyncQuestions();
+                await SyncScores();
+            }
+            catch(Exception e)
+            {
+                App.PopUpHelper.ShortAlert(e.Message);
+            }
         }
+
+
 
         #region ScoresFunctions
         public async Task<List<ScoresTable>> GetScores()

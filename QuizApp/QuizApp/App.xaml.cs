@@ -8,6 +8,7 @@ using System;
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
 using System.Threading.Tasks;
+using Plugin.Connectivity;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace QuizApp
@@ -107,6 +108,19 @@ namespace QuizApp
 
         protected override async void OnStart()
         {
+            CrossConnectivity.Current.ConnectivityChanged += (sender, args) =>
+            {
+                if (CrossConnectivity.Current.IsConnected)
+                {
+                    App.AzureService.SyncQuestions();
+                    App.AzureService.SyncScores();
+                    App.PopUpHelper.ShortAlert("Connected");
+                }
+                else
+                {
+                    App.PopUpHelper.ShortAlert("Disconnected");
+                }
+            };
             await AzureService.Initialise();
             // Handle when your app starts
         }
