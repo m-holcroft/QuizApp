@@ -12,6 +12,9 @@ namespace QuizApp.Data
         public string DisplayName { get; set;}   
         public int Points { get; set; }
         public DateTime AchievedOn { get; set; }
+        public int Synced { get; set; }
+        public string Latitude { get; set; }
+        public string Longitude { get; set; }
     }
 
     public class QuestionsTable

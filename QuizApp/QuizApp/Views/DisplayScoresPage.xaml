@@ -2,18 +2,18 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="QuizApp.Views.DisplayScoresPage"
-             xmlns:behaviour="clr-namespace:QuizApp.Common.Behaviours"
              Title="Scores">
 
     <ListView x:Name="ScoreListView" ItemsSource="{Binding DBScores}"
         IsPullToRefreshEnabled="True" RefreshCommand="{Binding RefreshScoresAsyncCommand}" IsRefreshing="{Binding IsBusy, Mode=OneWay}"> 
         <ListView.ItemTemplate>
             <DataTemplate>
-                <TextCell 
+                <ImageCell 
                     Text="{Binding DisplayName}"
                     Detail="{Binding Points}"
                     TextColor="White"
-                    DetailColor="White"/>
+                    DetailColor="White"
+                    ImageSource="{Binding SyncIndicator}"/>
             </DataTemplate>
         </ListView.ItemTemplate>
 

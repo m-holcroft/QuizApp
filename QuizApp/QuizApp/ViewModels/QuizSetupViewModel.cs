@@ -93,8 +93,6 @@ namespace QuizApp.ViewModels
             set { SetProperty<ObservableCollection<Question>>(ref _questionCollection, value, "QuestionCollection"); }
             get { return _questionCollection; }
         }
-
-
         #endregion
 
         #region Commands

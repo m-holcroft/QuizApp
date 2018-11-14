@@ -4,7 +4,7 @@
              x:Class="QuizApp.Views.DisplayResultsPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label  Text="{Binding User, StringFormat='Hello {0}'}"
+            <Label  Text="{Binding DisplayName, StringFormat='Hello {0}'}"
                     VerticalOptions="CenterAndExpand" 
                     HorizontalOptions="CenterAndExpand" />
             <Label  Text="{Binding FinalScore, StringFormat='You scored {0}!'}"

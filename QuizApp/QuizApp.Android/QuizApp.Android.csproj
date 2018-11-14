@@ -64,7 +64,7 @@
     <PackageReference Include="SQLitePCLRaw.provider.e_sqlite3.android">
       <Version>1.1.11</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Forms" Version="3.2.0.871581" />
+    <PackageReference Include="Xamarin.Forms" Version="3.3.0.967583" />
     <PackageReference Include="Xamarin.Android.Support.Design" Version="27.0.2.1" />
     <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="27.0.2.1" />
     <PackageReference Include="Xamarin.Android.Support.v4" Version="27.0.2.1" />
@@ -84,6 +84,7 @@
     <Compile Include="Classes\CDeviceOrientationDroid.cs" />
     <Compile Include="Classes\CMessageAndroid.cs" />
     <Compile Include="Classes\FileHelper.cs" />
+    <Compile Include="Classes\PermissionPrompt.cs" />
     <Compile Include="Classes\TextSpeecher.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />

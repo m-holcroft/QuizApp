@@ -11,14 +11,10 @@ namespace QuizApp.Helpers
         {
             Xamarin.Forms.DependencyService.Get<ITextSpeecher>().Speak(text);
         }
-
         public static DeviceOrientations GetOrientation()
         {
             var orientation = Xamarin.Forms.DependencyService.Get<IDeviceOrientation>().GetOrientation();
-
             return orientation;
         }
-
-
     }
 }

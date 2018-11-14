@@ -14,5 +14,6 @@ namespace QuizApp.Common
         /// An error message for the connection failing.
         /// </summary>
         public static string ConnectionFailedMessage = "There was a problem connecting to the web server, check your connection";
+        public static string AuthTokenUWP = "";
     }
 }

@@ -55,8 +55,29 @@ namespace QuizApp.Data
             ScoresTable score = new ScoresTable {
                 DisplayName = newScore.DisplayName,
                 Points = newScore.Points,
-                AchievedOn = newScore.AchievedOn };
+                AchievedOn = newScore.AchievedOn,
+                Latitude = newScore.Latitude,
+                Longitude = newScore.Longitude,
+                Synced = 0
+                };
             await _scoresTable.InsertAsync(score);
+        }
+
+        public async Task SetSyncedStatus(bool status)
+        {
+            var table = await _scoresTable.ReadAsync<ScoresTable>(_scoresTable.CreateQuery());
+            foreach (ScoresTable element in table)
+            {
+                if (status)
+                {
+                    element.Synced = 1;
+                }
+                else
+                {
+                    element.Synced = 0;
+                }
+
+            }
         }
 
         public async Task SyncScores()
@@ -66,6 +87,8 @@ namespace QuizApp.Data
             try
             {
                 await _scoresTable.PullAsync("allScores", _scoresTable.CreateQuery());
+                await SetSyncedStatus(true);
+                Debug.WriteLine("");
                 await MobileService.SyncContext.PushAsync();
             }
             catch(MobileServicePushFailedException mspfe)
@@ -103,7 +126,6 @@ namespace QuizApp.Data
         public async Task<List<QuestionsTable>> GetQuestions(int questionGroup)
         {
             await SyncQuestions();
-            //return await _questionsTable.Where(x => x.QuestionGroup == questionGroup).OrderBy(x => x.QuestionNumber).ToListAsync();
             return await _questionsTable.OrderBy(x => x.QuestionNumber).ToListAsync();
         }
 

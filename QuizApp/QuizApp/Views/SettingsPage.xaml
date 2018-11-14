@@ -9,10 +9,26 @@
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
 
+            <Label Text="{Binding Location}"
+                   VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
+            
+
+            <Button x:Name="UpdateLocationButton"
+                    VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"
+                    Text="{Binding UpdateLocationText}"
+                    Command="{Binding UpdateLocationCommand}"/>
+
             <Button x:Name="ResetDBButton"
                     VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"
                     Text="{Binding ResetButtonText}"
                     Command="{Binding ResetButtonCommand}"/>
+
+            <ActivityIndicator x:Name="actInd"
+                               IsRunning="{Binding IsBusy}"
+                               IsVisible="{Binding IsBusy}"
+                               VerticalOptions="StartAndExpand"
+                               HorizontalOptions="CenterAndExpand"
+                               TranslationY="60"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
