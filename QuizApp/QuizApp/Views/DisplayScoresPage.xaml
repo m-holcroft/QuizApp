@@ -11,9 +11,9 @@
                 <ImageCell 
                     Text="{Binding DisplayName}"
                     Detail="{Binding Points}"
+                    ImageSource="{Binding SyncImagePath}"
                     TextColor="White"
-                    DetailColor="White"
-                    ImageSource="{Binding SyncIndicator}"/>
+                    DetailColor="White"/>
             </DataTemplate>
         </ListView.ItemTemplate>
 

@@ -9,6 +9,7 @@ using QuizApp.Common;
 using System;
 using Xamarin.Forms;
 using System.Windows.Input;
+using System.Diagnostics;
 
 namespace QuizApp.ViewModels
 {
@@ -41,6 +42,29 @@ namespace QuizApp.ViewModels
             get { return _isBusy; }
             set { SetProperty(ref _isBusy, value); }
         }
+
+        private int _synced;
+        /// <summary>
+        /// Determines if the item has been synced or not. Ususally I'd use a bool for this but I want to use a converter.
+        /// </summary>
+        public int Synced
+        {
+            set { SetProperty<int>(ref _synced, value, "Synced"); }
+            get { return _synced; }
+        }
+
+        /// <summary>
+        /// The path to the relevant icon
+        /// </summary>
+        private string  _syncImagePath;
+
+        public string  SyncImagePath
+        {
+            set { SetProperty<string >(ref _syncImagePath, value, "SyncImagePath"); }
+            get { return _syncImagePath; }
+        }
+
+
         /// <summary>
         /// An ObservableCollection of <see cref="ScoresTable"/> objects. These objects contain the raw data of the scores obtained from the Azure Server.
         /// </summary>
@@ -93,8 +117,18 @@ namespace QuizApp.ViewModels
 
                 foreach (ScoresTable element in downloadedList)                                                         //Go through the List, add each element to the ObservableCollection. Needs doing since Lists dont support Data Binding while ObservableCollections do.
                 {
+                    if(element.Synced == 0)
+                    {
+                        element.SyncImagePath = "notsynced.png";
+                    }
+                    else
+                    {
+                        element.SyncImagePath = "synced.png";
+                    }
                     DBScores.Add(element);                                                                              //Add the element to the list.
+                    Debug.WriteLine("");
                 }
+                Debug.WriteLine("");
             }
             catch(Exception e)
             {

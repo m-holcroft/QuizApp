@@ -63,23 +63,6 @@ namespace QuizApp.Data
             await _scoresTable.InsertAsync(score);
         }
 
-        public async Task SetSyncedStatus(bool status)
-        {
-            var table = await _scoresTable.ReadAsync<ScoresTable>(_scoresTable.CreateQuery());
-            foreach (ScoresTable element in table)
-            {
-                if (status)
-                {
-                    element.Synced = 1;
-                }
-                else
-                {
-                    element.Synced = 0;
-                }
-
-            }
-        }
-
         public async Task SyncScores()
         {
             ReadOnlyCollection<MobileServiceTableOperationError> syncErrors = null;
@@ -87,8 +70,6 @@ namespace QuizApp.Data
             try
             {
                 await _scoresTable.PullAsync("allScores", _scoresTable.CreateQuery());
-                await SetSyncedStatus(true);
-                Debug.WriteLine("");
                 await MobileService.SyncContext.PushAsync();
             }
             catch(MobileServicePushFailedException mspfe)

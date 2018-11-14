@@ -15,6 +15,8 @@ namespace QuizApp.Data
         public int Synced { get; set; }
         public string Latitude { get; set; }
         public string Longitude { get; set; }
+        [JsonIgnore]
+        public string SyncImagePath { get; set; }
     }
 
     public class QuestionsTable
