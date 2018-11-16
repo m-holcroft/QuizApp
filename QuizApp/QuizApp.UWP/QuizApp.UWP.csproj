@@ -153,17 +153,8 @@
     <PackageReference Include="sqlite-net-pcl">
       <Version>1.5.231</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Forms" Version="3.3.0.967583" />
+    <PackageReference Include="Xamarin.Forms" Version="3.4.0.1008975" />
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.2.2" />
-    <PackageReference Include="Xamarin.Forms.Theme.Base">
-      <Version>1.0.0.43-pre1</Version>
-    </PackageReference>
-    <PackageReference Include="Xamarin.Forms.Theme.Dark">
-      <Version>1.0.0.43-pre1</Version>
-    </PackageReference>
-    <PackageReference Include="Xamarin.Forms.Theme.Light">
-      <Version>1.0.0.43-pre1</Version>
-    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\QuizApp\QuizApp.csproj">

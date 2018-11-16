@@ -1,5 +1,6 @@
 ﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Xamarin.Auth;
 using Microsoft.WindowsAzure.MobileServices;
 using QuizApp.Data;
 using QuizApp.ViewModels;

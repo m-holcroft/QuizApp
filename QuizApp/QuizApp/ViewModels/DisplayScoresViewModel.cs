@@ -126,9 +126,7 @@ namespace QuizApp.ViewModels
                         element.SyncImagePath = "synced.png";
                     }
                     DBScores.Add(element);                                                                              //Add the element to the list.
-                    Debug.WriteLine("");
                 }
-                Debug.WriteLine("");
             }
             catch(Exception e)
             {

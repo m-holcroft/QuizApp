@@ -35,6 +35,8 @@
 
         <Button x:Name="CustomButton" Command="{Binding NavigateCommandAsync}" CommandParameter="Custom"
                 Text="{Binding CustomText}"
+                IsVisible="False"
+                IsEnabled="False"
                 Grid.Row="5"/>
         
         
